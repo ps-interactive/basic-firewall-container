@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  firewall:
+    image: advanced-firewall
+    container_name: firewall
+    networks:
+      net1:
+        ipv4_address: 192.168.20.54
+      net2:
+        ipv4_address: 192.168.30.25
+    privileged: true
+    ports:
+      - "22:22"
+      - "8080:80"
+      - "5000:5000"
+    restart: unless-stopped
+
+networks:
+  net1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "192.168.20.0/24"
+  net2:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "192.168.30.0/24"
+
+
+
