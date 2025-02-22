@@ -10,6 +10,7 @@ RUN apt update && apt install -y \
 
 # Create SSH directory and set permissions
 RUN mkdir /var/run/sshd && echo 'root:firewall123' | chpasswd
+
 # Enable root SSH login and password authentication (not recommended for production)
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config \
     && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
